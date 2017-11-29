@@ -5,7 +5,7 @@ let projects = require('../projects.json');
 const shell = require('shelljs');
 
 class Add   {
-  constructor() {
+  constructor(rootDir) {
     return this.setProjectName()
       .then((name) => {
         this.name = name;
@@ -17,7 +17,7 @@ class Add   {
         shell.cd('scripts');
         shell.touch(newFile);
         shell.chmod('+x', newFile);
-        this.openScript(shell, newFile);
+        this.openScript(shell, newFile, rootDir);
         return Promise.resolve();
       })
       .then(() => {
@@ -34,10 +34,10 @@ class Add   {
       });
   }
 
-  openScript(shell, newFile) {
+  openScript(shell, newFile, rootDir) {
     // If MacOS then open script using nano in new terminal
     if(config.os && (config.os.toLowerCase() === 'macos' || config.os.toLowerCase() === 'osx')) {
-      shell.exec(`osascript -e 'tell application \"Terminal\" to do script \"nano ${newFile}\"'`);
+      shell.exec(`osascript -e 'tell application \"Terminal\" to do script \"nano ${rootDir}/scripts/${newFile}\"'`);
     }
   }
 

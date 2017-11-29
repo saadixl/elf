@@ -10,7 +10,7 @@ return menuIns.getOption()
 
 // Add project function
 function add() {
-  return new Add();
+  return new Add(__dirname);
 }
 
 // Fire up project function
