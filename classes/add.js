@@ -1,5 +1,5 @@
 const readline = require('readline');
-const btoa = require('btoa');
+var config = require('../config.json');
 var shell = require('shelljs');
 
 class Add   {
@@ -15,9 +15,15 @@ class Add   {
         shell.cd('scripts');
         shell.touch(newFile);
         shell.chmod('+x', newFile);
-        //shell.exec(`nano ${newFile}`);
+        this.openScript(shell, newFile);
         return Promise.resolve();
       });
+  }
+
+  openScript(shell, newFile) {
+    if(config.os && (config.os.toLowerCase() === 'macos' || config.os.toLowerCase() === 'osx')) {
+      shell.exec(`osascript -e 'tell application \"Terminal\" to do script \"nano ${newFile}\"'`);
+    }
   }
 
   setProjectName() {
