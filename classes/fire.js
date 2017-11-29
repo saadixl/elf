@@ -2,8 +2,8 @@ const projects = require('../projects.json');
 const List = require('prompt-list');
 const shell = require('shelljs');
 
-class Fire   {
-  constructor() {
+class Fire {
+  constructor(rootDir) {
     this.choices = Object.keys(projects);
     this.list = new List({
       name: 'menu',
@@ -14,7 +14,7 @@ class Fire   {
     return this.list.run()
       .then((project) => {
         shell.cd('scripts');
-        shell.exec(`./${project}.sh`);
+        shell.exec(`${rootDir}/scripts/${project}.sh`);
         process.exit(1);
         return Promise.resolve();
       });

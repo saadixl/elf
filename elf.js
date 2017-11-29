@@ -15,7 +15,7 @@ function add() {
 
 // Fire up project function
 function fire() {
-  return new Fire();
+  return new Fire(__dirname);
 }
 
 // Quit function

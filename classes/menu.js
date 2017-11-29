@@ -1,6 +1,6 @@
 const List = require('prompt-list');
 
-class Menu   {
+class Menu {
   constructor() {
     this.choices = ['Add new project', 'Fire up a project', 'Quit'];
     this.list = new List({

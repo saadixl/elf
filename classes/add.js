@@ -4,7 +4,7 @@ const jsonfile = require('jsonfile')
 let projects = require('../projects.json');
 const shell = require('shelljs');
 
-class Add   {
+class Add {
   constructor(rootDir) {
     return this.setProjectName()
       .then((name) => {
@@ -14,7 +14,7 @@ class Add   {
       .then((key) => {
         this.key = key;
         const newFile = `${key}.sh`;
-        shell.cd('scripts');
+        shell.cd(`${rootDir}/scripts`);
         shell.touch(newFile);
         shell.chmod('+x', newFile);
         this.openScript(shell, newFile, rootDir);
