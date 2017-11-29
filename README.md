@@ -15,4 +15,4 @@ Currently I don't have a proper installer. But for time being I am using an alte
 Right now you can only add your `os` name inside the `config.json`. Right now, if you add `osx` or `macos` as `os` then, after creating a new shell script, it will be opened using `nano`.
 
 ## GIF
-[recordit](http://g.recordit.co/lh0Kcep4ni.gif)
+![recordit](http://g.recordit.co/lh0Kcep4ni.gif)
