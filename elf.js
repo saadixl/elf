@@ -1,7 +1,25 @@
 let Menu = require('./classes/menu.js');
-let menu = new Menu();
+let Add = require('./classes/add.js');
+let menuIns = new Menu();
 
-return menu.getOption()
+return menuIns.getOption()
   .then((selection) => {
-    console.log("Selection: ",selection);
+    return eval(selection+"()");
   })
+
+// Add project function
+function add() {
+  console.log("Add new project...");
+  return new Add();
+}
+
+// Fire up project function
+function fire() {
+  console.log("Fire up existing project...");
+}
+
+// Quit function
+function quit() {
+  console.log("Bye!");
+  process.exit(1);
+}

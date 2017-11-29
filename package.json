@@ -9,6 +9,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "prompt-list": "^3.1.1"
+    "btoa": "^1.1.2",
+    "prompt-list": "^3.1.1",
+    "shelljs": "^0.7.8"
   }
 }
