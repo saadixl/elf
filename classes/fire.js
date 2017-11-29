@@ -13,7 +13,7 @@ class Fire {
 
     return this.list.run()
       .then((project) => {
-        shell.cd('scripts');
+        shell.cd(`${rootDir}/scripts`);
         shell.exec(`${rootDir}/scripts/${project}.sh`);
         process.exit(1);
         return Promise.resolve();
