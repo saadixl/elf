@@ -1,6 +1,8 @@
 const readline = require('readline');
-var config = require('../config.json');
-var shell = require('shelljs');
+const config = require('../config.json');
+const jsonfile = require('jsonfile')
+let projects = require('../projects.json');
+const shell = require('shelljs');
 
 class Add   {
   constructor() {
@@ -17,10 +19,23 @@ class Add   {
         shell.chmod('+x', newFile);
         this.openScript(shell, newFile);
         return Promise.resolve();
+      })
+      .then(() => {
+        projects[this.key] = this.name;
+        const file = '../projects.json';
+        jsonfile.writeFile(file, projects, function (err) {
+          if(!err) {
+            console.log("Projects updated successfully");
+          } else {
+            console.log(err);
+          }
+        });
+        return Promise.resolve();
       });
   }
 
   openScript(shell, newFile) {
+    // If MacOS then open script using nano in new terminal
     if(config.os && (config.os.toLowerCase() === 'macos' || config.os.toLowerCase() === 'osx')) {
       shell.exec(`osascript -e 'tell application \"Terminal\" to do script \"nano ${newFile}\"'`);
     }
